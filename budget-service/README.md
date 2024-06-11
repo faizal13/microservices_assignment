@@ -40,9 +40,9 @@ A Postman collection is available for testing the Budget Service APIs
 ### H2 Database Console
 Access the H2 database console at (http://localhost:8083/budget-service/h2-console)
 
-JDBC URL: jdbc:h2:mem:budgetdb
-Username: sa
-Password: password
+- JDBC URL: jdbc:h2:mem:budgetdb
+- Username: sa
+- Password: password
 
 ### License
 This project is licensed under the MIT License.
