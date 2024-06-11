@@ -7,7 +7,7 @@ This document provides an overview of the microservices system consisting of 5 s
 1. **Service Registry**: Registers all microservices for service discovery.
 2. **API Gateway**: Routes requests to respective microservices.
 3. **Budget Service**: create, update, delete budgets for categories.
-4. **Expense Service**: create expenses and checks for any budget actegory exceeded and then publish notification.
+4. **Expense Service**: create expenses and checks for any budget category exceeded and then publish notification.
 5. **Notification Service**: notification api used for expense service to update notification.
 
 Microservices follow DDD approach with following details:
@@ -34,9 +34,9 @@ Microservices follow DDD approach with following details:
 
 Follow these steps to test the microservices:
 
-2. Start the Service Registry.
-3. Start the API Gateway service.
-4. Start the Budget Service, Expense Service, and Notification Service.
+1. Start the Service Registry.
+2. Start the API Gateway service.
+3. Start the Budget Service, Expense Service, and Notification Service.
 
 Access Swagger UI for each service:
 
