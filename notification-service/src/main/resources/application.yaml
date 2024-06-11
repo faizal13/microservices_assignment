@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:notifictiondb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    h2:
+      console:
+        path : /h2-console
+        enabled: true
+  jpa:
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: notification-service
+  profiles:
+    active: native
+
+server:
+  port: 8081
+  servlet:
+    context-path: /notification-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

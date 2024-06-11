@@ -1,0 +1,78 @@
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: jdbc:h2:mem:expensedb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    h2:
+      console:
+        path : /h2-console
+        enabled: true
+  jpa:
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: expense-service
+  profiles:
+    active: native
+
+server:
+  port: 8082
+  servlet:
+    context-path: /expense-service
+
+notification:
+  service:
+    base-url: 'http://localhost:8080/notification-service'
+    path: '/api/v1/notification'
+budget:
+  service:
+    base-url: 'http://localhost:8080/budget-service'
+    path: '/api/v1/budget'
+
+####################### resilience Config ##############
+resilience4j:
+  retry:
+    instances:
+      throwingException:
+        maxRetryAttempts: 3
+        waitDuration: 1s
+        enableRandomizedWait: true
+        randomizedWaitFactor: 0.5
+        retryExceptions:
+          - java.lang.Exception
+  circuitbreaker:
+    configs:
+      default:
+        automatic-transition-from-open-to-half-open-enabled: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 10
+        minimum-number-of-calls: 7
+        permitted-number-of-calls-in-half-open-state: 5
+        record-exceptions: org.springframework.web.client.HttpServerErrorException,java.util.concurrent.TimeoutException
+        register-health-indicator: true
+        sliding-window-size: 20
+        wait-duration-in-open-state: 10s
+    instances:
+      onBoardingService:
+        baseConfig: default
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
