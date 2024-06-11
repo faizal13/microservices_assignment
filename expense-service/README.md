@@ -26,7 +26,7 @@ The Expense Service uses Swagger for API documentation.
 - OpenAPI Spec: http://localhost:8082/expense-service/v3/api-docs
 
 ### Postman Collection
-A Postman collection is available for testing the Budget Service APIs
+A Postman collection is available for testing the Expense Service APIs
 
 - [ExpenseMS.postman_collection.json](https://github.com/user-attachments/files/15787141/ExpenseMS.postman_collection.json)
 
