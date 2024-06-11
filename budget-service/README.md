@@ -1,58 +1,48 @@
-# Fee Collection Management System
+# Budget Service
 
-## Introduction
+## Overview
+The Budget Service allows users to manage budget categories and set budget amounts.
 
-The Fee Collection Management System is a RESTful API designed to manage fee collection for students in a school system. It provides endpoints to collect fees, generate receipts, and retrieve fee collection data.
+## Requirements
+- Java 17
+- Maven
 
-## Endpoints
+## Getting Started
 
-### Fee Collection
+### Running the Service
+1. Clone the repository.
+2. Navigate to the `budget-service` directory.
+3. Build the project using Maven:
+   ```sh
+   mvn clean install
+4. Run the application:
+   ```sh
+   mvn spring-boot:run
 
-#### Collect Fee and Generate Receipt
+### API Documentation
+The Budget Service uses Swagger for API documentation.
 
-- **URL:** POST /fees/collect
-- **Description:** Collect fee for a student and generate a receipt.
-- **Request Body:**
-  ```json
-  {
-    "studentId": "1",
-    "amountPaid": 100.5,
-    "cardType": "visa",
-    "cardNumber": "1234"
-  }
+- Swagger UI: http://localhost:8083/budget-service/swagger-ui.html
+- OpenAPI Spec: http://localhost:8083/budget-service/v3/api-docs
 
-- **Response:**
-- Status Code: 200 OK
-- Body: Receipt details
-  ```json
-  {
-  "studentId": "1",
-  "name": "JOHN DOE",
-  "grade": "4",
-  "school": "Test High School",
-  "reference": "0812cefb-7209-4e52-b161-646f94a695b9",
-  "amountPaid": 100.5,
-  "timestamp": "2024-04-27T14:52:49.586774",
-  "cardNumber": "1234",
-  "cardType": "visa"
-  }
+### Postman Collection
+A Postman collection is available for testing the Budget Service APIs
 
-#### Get Collected Fee by Student ID
+- [budgetMs.postman_collection.json](https://github.com/user-attachments/files/15787018/budgetMs.postman_collection.json)
 
-- **URL:** GET /fees/{studentId}
-- **Description:** Get collected fee details for a specific student.
-- **Path Parameter:** studentId - The ID of the student.
-- 
-- **Response:**
-- Status Code: 200 OK
-- Body: List of fee collection details for the student
-```json
-  [
-  {
-    "studentId": "1",
-    "amountPaid": 100.5,
-    "timestamp": "2024-04-27T14:52:41.224702",
-    "cardType": "visa",
-    "cardNumber": "1234"
-  }
-  ]
+### Endpoints
+- GET /api/v1/budgets : 'Retrieve all budgets'
+- POST /api/v1/budget : 'Create a new budget'
+- PUT /api/v1/budget/{budgetId} : 'update existing budget'
+- GET /api/v1/budget/{categoryName} : 'get Budget by category' 
+- DELETE /api/v1/budget/{budgetId} : 'delete an existing budget'
+
+### H2 Database Console
+Access the H2 database console at (http://localhost:8083/budget-service/h2-console)
+
+JDBC URL: jdbc:h2:mem:budgetdb
+Username: sa
+Password: password
+
+### License
+This project is licensed under the MIT License.
