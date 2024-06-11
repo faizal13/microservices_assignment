@@ -10,12 +10,13 @@ The Expense Service allows users to track expenses and communicates with the Not
 ## Getting Started
 
 ### Running the Service
-1. Clone the repository.
-2. Navigate to the `expense-service` directory.
-3. Build the project using Maven:
+1. Please ensure api-gateway and service-registry services are up and running
+2. Clone the repository.
+3. Navigate to the `expense-service` directory.
+4. Build the project using Maven:
    ```sh
    mvn clean install
-4. Run the application:
+5. Run the application:
    ```sh
    mvn spring-boot:run
 
